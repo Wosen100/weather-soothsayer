@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Container, Row } from "reactstrap";
+import "./App.css";
+import Day from "./components/Day";
+import Daydetails from "./components/Daydetails";
+import Week from "./components/Week";
 
 function App() {
+  const [days, setDays] = useState([]);
+
+  useEffect(() => {
+    // #fetch forcase for 7 days
+  }, []);
+
+  const getCities = (query) => {
+    // #query for cities and show them on them
+    return [];
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Row>
+        <Daydetails />
+      </Row>
+      <Row>
+        <Week>
+          {days.map((day) => (
+            <Day payload={day} />
+          ))}
+        </Week>
+      </Row>
+    </Container>
   );
 }
 
