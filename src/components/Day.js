@@ -1,9 +1,12 @@
 import React from 'react'
 
-export default function Day() {
+
+function Day() {
   return (
     <div>
       day
     </div>
   )
 }
+
+export default Day;

@@ -12,3 +12,5 @@ export const axios = (url) =>
   Axios(url)
     .then((res) => res.json())
     .catch((error) => new AlertError(`Error: request to ${url} failed`, error));
+
+

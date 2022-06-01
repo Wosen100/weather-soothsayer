@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 
-export default function Daydetails(day, findCity, selectCityFn) {
+export default function Daydetails(findCity, getCityWeather) {
+  console.log(getCityWeather)
+  
   const [cities, setCities] = useState([]);
 
-  const handleSearchCities = (city_query) => {
-    findCity(city_query).then((cities_response) => setCities(cities_response));
+  const handleSearchCities = (cityQuery) => {
+    findCity(cityQuery).then((citiesResponse) => setCities(citiesResponse));
   };
 
-  const makeCityCard = (city) => (
+
+
+  const makeCityCard = () => (
     <div>
       <h2>city title</h2>
       <p>location</p>
