@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* .border {
+  border: 1px solid;
+} */
+
+body {
+  background-image: url(https://pichastock.com/wp-content/uploads/2020/05/1588445384_s0c4zf6e1x.jpg);
+  background-repeat: none;
+  background-size: cover;
+  background-blend-mode: darken;
+}
+
+.cityWrapper {
+
+  display:flex  !important;
+
+}

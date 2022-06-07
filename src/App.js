@@ -1,42 +1,70 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
+import moment from "moment";
 import { makeCityQueryUrl, makeWeatherQueryUrl } from "./api";
 import "./App.css";
-import { axios } from "./axios";
+import { Axios } from "./axios";
 import Day from "./components/Day";
 import Daydetails from "./components/Daydetails";
-import Week from "./components/Week";
+import MoreInfo from "./components/MoreInfo";
 
 function App() {
-// eslint-disable-next-line no-unused-vars
-const [days, setDays] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [days, setDays] = useState([]);
+  const [cityWeatherInfo, setCityWeatherInfo] = useState(null);
+  const [selectoneday, setSelectoneday] = useState(null);
 
   useEffect(() => {
     // #fetch forcase for 7 days
   }, []);
 
   const getCities = (query) => 
-    // #query for cities and show them on them
-     axios(makeCityQueryUrl(query))
-  ;
 
-  const getCityWeather = (lat,lon) =>axios(makeWeatherQueryUrl(lat,lon))
+    // #query for cities and show them on them
+    Axios(makeCityQueryUrl(query));
+
+  // setSelectoneday(null);
+  
+
+  const getCityWeather = (lat, lon) => Axios(makeWeatherQueryUrl(lat, lon)).then((data) => setCityWeatherInfo(data));
 
   return (
     <Container>
       <Row>
-        <Daydetails findCity={getCities} getCityWeather={getCityWeather}  />
+        <Daydetails findCity={getCities} getCityWeather={getCityWeather} />
       </Row>
+
       <Row>
-        <Week>
-          {days.map((day) => (
-            <Day
-             payload={day} />
+        {/* <h1>Upcoming forcast</h1> */}
+        <Row  style={{ display : !selectoneday ? "flex" : "none"}} >
+          {cityWeatherInfo?.data.slice(0, 7).map((day) => (
+            <Col key={day.ts}>
+              <Day payload={day}
+                selectday={() => setSelectoneday(day)}
+              />
+
+            </Col>
           ))}
-        </Week>
+        </Row>
+        <div>
+          {selectoneday && (
+
+            <MoreInfo
+              temp={selectoneday.temp}
+              lowtemp={selectoneday.low_temp}
+              hightemp={selectoneday.high_temp}
+              precip={selectoneday.precip}
+              date={moment(selectoneday.valid_date).format("dddd, MMM, Do, YYYY") }
+            />
+          )
+          }
+        </div>
       </Row>
+
     </Container>
   );
 }
+
+
 
 export default App;
