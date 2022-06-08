@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
+// eslint-disable-next-line import/no-unresolved
 import moment from "moment";
 import { makeCityQueryUrl, makeWeatherQueryUrl } from "./api";
 import "./App.css";
@@ -16,7 +17,11 @@ function App() {
 
   useEffect(() => {
     // #fetch forcase for 7 days
-  }, [cityWeatherInfo]);
+  }, []);
+
+  const onReset = (reset) => {
+    setSelectoneday(reset); 
+  }
 
   const getCities = (query) => 
 
@@ -33,6 +38,7 @@ function App() {
       <Row>
         <Daydetails findCity={getCities} getCityWeather={getCityWeather} />
       </Row>
+      
 
       <Row>
         {/* <h1>Upcoming forcast</h1> */}
@@ -54,7 +60,9 @@ function App() {
               lowtemp={selectoneday.low_temp}
               hightemp={selectoneday.high_temp}
               precip={selectoneday.precip}
-              date={moment(selectoneday.valid_date).format("dddd, MMM, Do, YYYY") }
+              date={moment(selectoneday.valid_date).format("dddd, MMM, Do, YYYY")}
+              onReset={onReset}
+            
             />
           )
           }

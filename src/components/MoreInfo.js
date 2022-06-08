@@ -3,7 +3,7 @@ import { Button, Col, Row } from "reactstrap";
 import PropTypes from "prop-types";
 
 
-export default function moreInfo({ temp, lowtemp, hightemp, precip, date }) {
+export default function moreInfo({ temp, lowtemp, hightemp, precip, date, onReset }) {
 
   const [rese, setRese] = useState(null);
 
@@ -23,11 +23,10 @@ export default function moreInfo({ temp, lowtemp, hightemp, precip, date }) {
 
 
         </Col>
-        <Button variant="primary" onClick={() =>
-
-          setRese(true)}>reset
-
-        </Button>
+        <Button variant="primary" onClick={() =>{
+          setRese(true);
+          onReset(null); 
+        }}>Go Back</Button>
 
 
 
