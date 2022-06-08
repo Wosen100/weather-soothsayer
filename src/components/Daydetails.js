@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import {Button, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 // import styledComponents from "styled-components";
 // import styled from 'styled-components'
 
@@ -10,39 +10,43 @@ export default function Daydetails({ findCity, getCityWeather }) {
   console.log(getCityWeather);
 
   const [cities, setCities] = useState([]);
+  const [selected, setSelected] =useState(null)
 
   const handleSearchCities = (event) => {
     event.preventDefault();
 
     const { city } = event.target.elements;
-
+    setSelected(false)
     findCity(city.value).then((citiesResponse) => {
       setCities(citiesResponse ?? []);
     });
   };
 
-  const fetchWeather = ({ lat, lon }) =>  {
-    console.log (lat)
-    return getCityWeather(lat, lon);} 
-    
-    // const = styled.div`
-    // hight: 30px
-    
-    // `
+  const fetchWeather = ({ lat, lon }) => {
+    console.log(lat)
+    return getCityWeather(lat, lon);
+  }
+
+  // const = styled.div`
+  // hight: 30px
+
+  // `
 
   const makeCityCard = (city) => (
-   
-      <Row>
-      <Button onClick={() => fetchWeather(city)} size="xsm">
-        <h3>{city.name}</h3>
-        <p>{city.state}</p> 
-        <p>{city.country}</p>
-       
-       
+ 
+    <Row>
+      <Button onClick={() =>  {fetchWeather(city); setSelected(true)}} size="sm">
+        <p>{city.name} , {city.state}</p>
+        {/* <p>{city.state}</p> 
+        <p>{city.country}</p> */} 
+
       </Button>
+
+
     </Row>
-    
+
   );
+
 
   return (
     <Container>
@@ -68,9 +72,12 @@ export default function Daydetails({ findCity, getCityWeather }) {
 
           {/* show cities cards that are clickable */}
 
-          <Row className ="cityWrapper">
+
+          {(!selected)?  <Row className="cityWrapper zindex">
+
             <Col>{cities.map(makeCityCard)}</Col>
-          </Row>
+          </Row> : "" }
+
         </Col>
       </Row>
     </Container>

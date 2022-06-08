@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     // #fetch forcase for 7 days
-  }, []);
+  }, [cityWeatherInfo]);
 
   const getCities = (query) => 
 
