@@ -47,6 +47,7 @@ function App() {
             <Col key={day.ts}>
               <Day payload={day}
                 selectday={() => setSelectoneday(day)}
+                icon={day.weather.icon}
               />
 
             </Col>

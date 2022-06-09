@@ -15,10 +15,10 @@ export default function moreInfo({ temp, lowtemp, hightemp, precip, date, onRese
       {(!rese) ? <Row className="disaper">
         <Col>
           <h1>Upcoming forcast</h1>
-          <h1>{temp}</h1>
-          <h1>{lowtemp}</h1>
-          <h1>{hightemp}</h1>
-          <h1>{precip}</h1>
+          <h1>{temp.toFixed(1)}</h1>
+          <h1>{lowtemp.toFixed(1)}</h1>
+          <h1>{hightemp.toFixed(1)}</h1>
+          <h1>{precip.toFixed(1)}</h1>
           <h1>{date}</h1>
 
 
@@ -28,10 +28,7 @@ export default function moreInfo({ temp, lowtemp, hightemp, precip, date, onRese
           onReset(null); 
         }}>Go Back</Button>
 
-
-
-
-      </Row> : ""}
+    </Row> : ""}
 
     </div>
   );
