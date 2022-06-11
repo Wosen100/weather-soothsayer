@@ -2,40 +2,51 @@ import React from "react";
 // import moment from "moment";
 import moment from "moment";
 import PropTypes from "prop-types";
-import {Col, Row } from "reactstrap";
+import { Col, Row } from "reactstrap";
 // eslint-disable-next-line react/prop-types
 
 // eslint-disable-next-line react/prop-types
 function Day({ payload, selectday, icon }) {
   return (
     <card className="" onClick={selectday}>
-      <Row >
+      <Row>
         <Col className="wraping">
-        <h4> {moment(payload.valid_date,"YYYY-MM-DD").format("dddd")}</h4>
-         
-          <span>{payload?.temp}<sup>0</sup></span>
-       <img src={`https://www.weatherbit.io/static/img/icons/${icon}.png`} alt="https://www.weatherbit.io/static/img/icons/r01d.png" />
-        <p><strong>High</strong>:{payload.high_temp.toFixed(1)}</p>
-        <p><strong>Low</strong>:{payload.low_temp.toFixed(1)}</p>
-        <p><strong>precip</strong>:{payload.precip.toFixed(1)}%</p>
-      
+          <h4> {moment(payload.valid_date, "YYYY-MM-DD").format("dddd")}</h4>
+
+          <span>
+            {payload?.temp}
+            <sup>0</sup>
+          </span>
+          <img src={`https://www.weatherbit.io/static/img/icons/${icon}.png`} alt="https://www.weatherbit.io/static/img/icons/r01d.png" />
+          <p>
+            <strong>High</strong>:{payload.high_temp.toFixed(1)}
+          </p>
+          <p>
+            <strong>Low</strong>:{payload.low_temp.toFixed(1)}
+          </p>
+          <p>
+            <strong>precip</strong>:{payload.precip.toFixed(1)}%
+          </p>
         </Col>
       </Row>
     </card>
   );
 }
 
+export const WeatherType = PropTypes.shape({ description: PropTypes.string.isRequired });
+export const ForecastType = PropTypes.shape({
+  weather: WeatherType,
+  temp: PropTypes.string,
+  valid_date: PropTypes.string,
+  datetime: PropTypes.string,
+  high_temp: PropTypes.string,
+  low_temp: PropTypes.string,
+  precip: PropTypes.string,
+  selectday: PropTypes.func,
+  icon: PropTypes.string,
+});
+
 Day.propTypes = {
-payload: PropTypes.shape({
-    weather: PropTypes.shape({ description: PropTypes.string.isRequired }),
-    temp: PropTypes.string,
-    valid_date: PropTypes.string,
-    datetime: PropTypes.string,
-    high_temp: PropTypes.string,
-    low_temp: PropTypes.string,
-    precip: PropTypes.string,
-    selectday: PropTypes.func,
-    icon: PropTypes.string,
-  }).isRequired,
+  payload: ForecastType.isRequired,
 };
 export default Day;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Row } from "reactstrap";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import { WeatherType } from "./Day";
 
 const Infowrapper = styled.div`
   color: "red" !important;
@@ -15,7 +15,7 @@ const Infowrapper = styled.div`
   text-align: center;
 `;
 
-export default function moreInfo({ temp, lowtemp, hightemp, precip, date, onReset }) {
+export default function MoreInfo({ payload: { temp, lowtemp, hightemp, precip, date, onReset } }) {
   const [rese, setRese] = useState(null);
 
   useEffect(() => {
@@ -33,13 +33,13 @@ export default function moreInfo({ temp, lowtemp, hightemp, precip, date, onRese
                 Detailed forcast for a day :-&gt;
               </h1>
 
-              <h1 style={{ fontSize: "20px" }}>
+              <span style={{ fontSize: "20px" }}>
                 <h1>Temp: {temp.toFixed(1)} </h1>
                 <h1>Low-Temp: {lowtemp.toFixed(1)} </h1>
                 <h1>High-Temp: {hightemp.toFixed(1)} </h1>
-                <h1> Precip: {precip.toFixed(1)} </h1>
+                <h1 alt="precipitation"> Precip: {precip.toFixed(1)} </h1>
                 <h1>Date: {date} </h1>
-              </h1>
+              </span>
             </Col>
           </Infowrapper>
 
@@ -60,7 +60,7 @@ export default function moreInfo({ temp, lowtemp, hightemp, precip, date, onRese
   );
 }
 
-moreInfo.propTypes = {
+MoreInfo.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  children: PropTypes.any.isRequired,
+  payload: WeatherType.isRequired,
 };

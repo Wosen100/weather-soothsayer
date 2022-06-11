@@ -73,9 +73,9 @@ export default function Daydetails({ findCity, getCityWeather }) {
             <Form onSubmit={handleSearchCities}>
               <FormGroup>
                 <Label>City</Label>
-                <Input type="text" autoComplete="true" required name="city" id="city" />
+                <Input type="text" autoComplete="true" required name="city" id="city" data-testid="cityInput" />
               </FormGroup>
-              <Button color="primary" type="submit">
+              <Button color="primary" type="submit" data-testid="searchCityBtn">
                 Submit
               </Button>
             </Form>
@@ -85,7 +85,7 @@ export default function Daydetails({ findCity, getCityWeather }) {
 
           {!selected ? (
             <Row className="cityWrapper zindex">
-              <Col>{cities.map(makeCityCard)}</Col>
+              <Col data-testid="citiesFound">{cities.map(makeCityCard)}</Col>
             </Row>
           ) : (
             ""
