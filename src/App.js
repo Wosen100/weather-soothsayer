@@ -39,7 +39,6 @@ function App() {
         <Daydetails findCity={getCities} getCityWeather={getCityWeather} />
       </Row>
       
-
       <Row>
         {/* <h1>Upcoming forcast</h1> */}
         <Row  style={{ display : !selectoneday ? "flex" : "none"}} >
@@ -49,13 +48,11 @@ function App() {
                 selectday={() => setSelectoneday(day)}
                 icon={day.weather.icon}
               />
-
             </Col>
           ))}
         </Row>
         <div>
           {selectoneday && (
-
             <MoreInfo
               temp={selectoneday.temp}
               lowtemp={selectoneday.low_temp}
@@ -63,17 +60,13 @@ function App() {
               precip={selectoneday.precip}
               date={moment(selectoneday.valid_date).format("dddd, MMM, Do, YYYY")}
               onReset={onReset}
-            
-            />
+              />
           )
           }
         </div>
       </Row>
-
     </Container>
   );
 }
-
-
 
 export default App;
