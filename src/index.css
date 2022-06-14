@@ -11,3 +11,49 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* .border {
+  border: 1px solid;
+} */
+
+body {
+ /* background-image: url(https://pichastock.com/wp-content/uploads/2020/05/1588445384_s0c4zf6e1x.jpg);  */
+  background-image: url("./Img/pexels.jpg");
+  background-repeat : no-repeat ;
+  background-attachment : fixed ;
+  background-size : 100% 100% ;
+
+  background-blend-mode: darken;
+}
+
+
+.cityWrapper {
+
+  display:flex  !important;
+
+}
+
+.zindex{
+  position: absolute;
+  right: 12rem;
+  top: 5rem; 
+  z-index: 1;
+
+}
+
+img {
+  width: 40px;
+}
+
+.wraping {
+  background-color:bisque;
+  border : 2px solid red ;
+  border-radius : 50px 50px ;
+}
+
+.detailed {
+  background-color:bisque;
+  border : 2px solid red ;
+  border-radius : 50px 50px ;
+}

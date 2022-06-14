@@ -1,4 +1,4 @@
-import { Axios } from "axios";
+import axios from "axios";
 
 export class AlertError extends Error {
   constructor(message, error) {
@@ -8,9 +8,7 @@ export class AlertError extends Error {
   }
 }
 
-export const axios = (url) =>
-  Axios(url)
-    .then((res) => res.json())
+export const Axios = (url) =>
+  axios.get(url)
+    .then((res) => res.data)
     .catch((error) => new AlertError(`Error: request to ${url} failed`, error));
-
-
