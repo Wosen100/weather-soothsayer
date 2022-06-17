@@ -36,7 +36,7 @@ function App() {
   return (
     <Container>
       <Row>
-        <Daydetails findCity={getCities} getCityWeather={getCityWeather} />
+        <Daydetails findCity={getCities} getCityWeathers={getCityWeather} />
       </Row>
       
       <Row>

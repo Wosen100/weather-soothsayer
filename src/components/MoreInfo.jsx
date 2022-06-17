@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Infowrapper = styled.div`
-  color: "red" !important;
+  color: "orange" !important;
   background-color: bisque;
-  border: 2px solid red;
+  border: 2px solid orange;
   font-weight: 20px;
   border-radius: 50px 50px;
   h1 {
@@ -43,7 +43,8 @@ export default function moreInfo({ temp, lowtemp, hightemp, precip, date, onRese
             </Col>
           </Infowrapper>
 
-          <Button
+          <Button className="goback"
+          
             variant="primary"
             onClick={() => {
               setRese(true);
