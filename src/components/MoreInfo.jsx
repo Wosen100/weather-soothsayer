@@ -3,6 +3,7 @@ import { Button, Col, Row } from "reactstrap";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+
 const Infowrapper = styled.div`
   color: "orange" !important;
   background-color: bisque;
@@ -15,7 +16,7 @@ const Infowrapper = styled.div`
   text-align: center;
 `;
 
-export default function moreInfo({ temp, lowtemp, hightemp, precip, date, onReset }) {
+export default function moreInfo({ lowtemp, hightemp, precip, date, onReset, feellowTemp, feelhighTemp, relativeHumidity, windSpeed, windDirection  }) {
   const [rese, setRese] = useState(null);
 
   useEffect(() => {
@@ -32,14 +33,27 @@ export default function moreInfo({ temp, lowtemp, hightemp, precip, date, onRese
                 {/* textTransform :   "uppercase"  */}
                 Detailed forcast for a day :-&gt;
               </h1>
-
               <h1 style={{ fontSize: "20px" }}>
-                <h1>Temp: {temp.toFixed(1)} </h1>
-                <h1>Low-Temp: {lowtemp.toFixed(1)} </h1>
-                <h1>High-Temp: {hightemp.toFixed(1)} </h1>
-                <h1> Precip: {precip.toFixed(1)} </h1>
+                
                 <h1>Date: {date} </h1>
               </h1>
+
+              <section>
+                <p className="dayList">
+                  <strong>High</strong>:
+                  {hightemp.toFixed(1)}<sup>o</sup>|<strong>Feels like:</strong>{feelhighTemp}<sup>o</sup>
+                </p>
+                <p className="dayList"> <strong>low</strong>:
+                  {lowtemp.toFixed(1)}<sup>o</sup>| <strong>Feels like:</strong>{feellowTemp}<sup>o</sup>
+                </p>
+                <p className="dayList">
+                  <strong>likelhood of Precipitation:</strong>
+                  {precip}<sup>o</sup>|
+                  <strong> Relative Humidty  </strong> {relativeHumidity}<sup>o</sup>
+                </p>
+                <p className="dayList">Wind Speed:{windSpeed}| <strong>Wind Direction:</strong>{windDirection}</p>
+              </section>
+
             </Col>
           </Infowrapper>
 

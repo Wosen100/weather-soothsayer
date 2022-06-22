@@ -47,9 +47,9 @@ export default function Daydetails({ findCity, getCityWeathers}) {
         size="sm"
       >
         <p>
-          {city.name} , {city.state}
+          {city.name} , {city.state} , {city.country}
         </p>
-        {/* <p>{city.state}</p>
+        {/* <p></p>
         <p>{city.country}</p> */}
       </Button>
     </Row>
@@ -68,7 +68,7 @@ export default function Daydetails({ findCity, getCityWeathers}) {
           <Row>
             <Form onSubmit={handleSearchCities}>
               <FormGroup>
-                <Label>City
+                <Label>
 
                 <Input type="text" autoComplete="true" required name="city" id="city" placeholder="Type City Name HERE"/>
                 </Label>

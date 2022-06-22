@@ -20,16 +20,16 @@ function App() {
   }, []);
 
   const onReset = (reset) => {
-    setSelectoneday(reset); 
+    setSelectoneday(reset);
   }
 
-  const getCities = (query) => 
+  const getCities = (query) =>
 
     // #query for cities and show them on them
     Axios(makeCityQueryUrl(query));
 
   // setSelectoneday(null);
-  
+
 
   const getCityWeather = (lat, lon) => Axios(makeWeatherQueryUrl(lat, lon)).then((data) => setCityWeatherInfo(data));
 
@@ -38,10 +38,10 @@ function App() {
       <Row>
         <Daydetails findCity={getCities} getCityWeathers={getCityWeather} />
       </Row>
-      
+
       <Row>
         {/* <h1>Upcoming forcast</h1> */}
-        <Row  style={{ display : !selectoneday ? "flex" : "none"}} >
+        <Row style={{ display: !selectoneday ? "flex" : "none" }} >
           {cityWeatherInfo?.data.slice(0, 7).map((day) => (
             <Col key={day.ts}>
               <Day payload={day}
@@ -54,13 +54,18 @@ function App() {
         <div>
           {selectoneday && (
             <MoreInfo
+              feellowTemp={selectoneday.app_max_temp}
+              feelhighTemp={selectoneday.app_min_temp}
+              relativeHumidity={selectoneday.rh}
+              windSpeed={selectoneday.wind_spd}
+              windDirection={selectoneday.wind_cdir_full}
               temp={selectoneday.temp}
               lowtemp={selectoneday.low_temp}
               hightemp={selectoneday.high_temp}
               precip={selectoneday.precip}
               date={moment(selectoneday.valid_date).format("dddd, MMM, Do, YYYY")}
               onReset={onReset}
-              />
+            />
           )
           }
         </div>
