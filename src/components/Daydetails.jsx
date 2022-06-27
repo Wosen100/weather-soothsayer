@@ -1,12 +1,15 @@
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
-import styled from "styled-components";
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
+import styled from 'styled-components';
 
 const Titlewrapper = styled.div`
-  color: "red" !importat;
+  color: "orange" !importat;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   background-color: bisque;
-  border: 2px solid red;
+  border: 2px solid orange;
   font-weight: 20px;
   border-radius: 50px 50px;
   h1 {
@@ -15,9 +18,8 @@ const Titlewrapper = styled.div`
   text-align: center;
 `;
 
-export default function Daydetails({ findCity, getCityWeather }) {
-  console.log(getCityWeather);
-
+export default function Daydetails({ findCity, getCityWeathers}) {
+  
   const [cities, setCities] = useState([]);
   const [selected, setSelected] = useState(null);
 
@@ -31,15 +33,9 @@ export default function Daydetails({ findCity, getCityWeather }) {
     });
   };
 
-  const fetchWeather = ({ lat, lon }) => {
-    console.log(lat);
-    return getCityWeather(lat, lon);
-  };
+  const fetchWeather = ({ lat, lon }) => getCityWeathers(lat, lon);
 
-  // const = styled.div`
-  // hight: 30px
 
-  // `
 
   const makeCityCard = (city) => (
     <Row>
@@ -51,9 +47,9 @@ export default function Daydetails({ findCity, getCityWeather }) {
         size="sm"
       >
         <p>
-          {city.name} , {city.state}
+          {city.name} , {city.state} , {city.country}
         </p>
-        {/* <p>{city.state}</p> 
+        {/* <p></p>
         <p>{city.country}</p> */}
       </Button>
     </Row>
@@ -63,19 +59,21 @@ export default function Daydetails({ findCity, getCityWeather }) {
     <Titlewrapper>
       <Row className="titlewrapper">
         {/* show todays forcast on the left */}
-        <Col md="8" sm="6" xs="6" className="border">
-          <h1 style={{ fontSize: "35px", textTransform: "uppercase",  center: "center" }}>Today &apos;s forecast</h1>
+        <Col md="8" sm="6" xs="6" className="noread">
+          <h1 style={{ fontSize: '35px', textTransform: 'uppercase', center: 'center' }}>Today &apos;s forecast</h1>
         </Col>
 
         {/* form on the right */}
-        <Col md="4" sm="6" xs="6" className="border">
+        <Col md="4" sm="6" xs="6" className="noread">
           <Row>
             <Form onSubmit={handleSearchCities}>
               <FormGroup>
-                <Label>City</Label>
-                <Input type="text" autoComplete="true" required name="city" id="city" />
+                <Label>
+
+                <Input type="text" autoComplete="true" required name="city" id="city" placeholder="Type City Name HERE"/>
+                </Label>
               </FormGroup>
-              <Button color="primary" type="submit">
+              <Button className="secondaryone" type="submit">
                 Submit
               </Button>
             </Form>
@@ -88,7 +86,7 @@ export default function Daydetails({ findCity, getCityWeather }) {
               <Col>{cities.map(makeCityCard)}</Col>
             </Row>
           ) : (
-            ""
+            ''
           )}
         </Col>
       </Row>
@@ -99,5 +97,5 @@ export default function Daydetails({ findCity, getCityWeather }) {
 // proptypes
 Daydetails.propTypes = {
   findCity: PropTypes.func.isRequired,
-  getCityWeather: PropTypes.func.isRequired,
+  getCityWeathers:PropTypes.func.isRequired
 };
